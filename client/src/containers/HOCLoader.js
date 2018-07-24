@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
-
 import Loader from '../components/Loader';
+
+//High order function for loading
 
 export default propName=>WrappedComponent=> {
   return class LoaderHOC extends Component{

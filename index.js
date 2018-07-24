@@ -17,6 +17,7 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Importing routes for authentication and getting user's profile
 require('./server/routes/auth')(app);
 
 if(process.env.NODE_ENV === 'production'){

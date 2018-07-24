@@ -1,9 +1,10 @@
 import _ from 'lodash';
 
+
+//Pure function to get deep nesting array with 'li' html element
 export const getResolvedArray = (o)=>{
     let html='';
     _.forEach(o,v=>{
-        _.isArray(v)?getResolvedArray(v):_.isPlainObject(v) && !_.isEmpty(v)?getResolvedObject(v):v
         let value = ''
         if( _.isArray(v)){
             value+=getResolvedArray(v);
@@ -18,7 +19,7 @@ export const getResolvedArray = (o)=>{
     return html;
 }
 
-
+//Pure function to get nesting object data with 'div' element; 
 export const getResolvedObject = (o)=>{
     let html=''       
     _.forEach(_.keys(o),(k)=>{

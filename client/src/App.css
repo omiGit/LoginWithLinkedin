@@ -21,6 +21,17 @@
 .App-intro {
   font-size: large;
 }
+.btn{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  background:#2b6298;
+  color: white;
+  padding: 10px;
+}
+a.btn:hover{
+  color:white;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

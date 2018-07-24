@@ -5,16 +5,14 @@ import { Segment, Card, Image, Container, List} from 'semantic-ui-react'
 import ReactHtmlParser from 'react-html-parser';
 import _ from 'lodash';
 
+
+//Profile UI
 const Profile = ({user})=>{
   const Hml = ReactHtmlParser(getResolvedObject(_.omit(user,['id','siteStandardProfileRequest','formattedName','pictureUrl','publicProfileUrl','pictureUrls'])));
   const pictureUrls = _.isArray(user.pictureUrls) && user.pictureUrls.map((p)=>
   <List.Item><Image href={p} src={p} size='small'/></List.Item>)
-  console.log(pictureUrls);
-  
     return (
       <Container>
-          <Card >
-          </Card>
           <Card fluid={true}>
           <Card.Header>
           <Segment>
@@ -39,19 +37,15 @@ const Profile = ({user})=>{
               <a href={user.siteStandardProfileRequest}>{user.siteStandardProfileRequest}</a>
             </List.Item>
             <List.Item>
-            <h3>Pictures <Card.Meta>{_.isBoolean(pictureUrls) ?'Click on image':"Your don't have any pictures"}</Card.Meta></h3>
-            
+            <h3>Pictures : <Card.Meta>{!_.isBoolean(pictureUrls)?'Click on image':"Your don't have any pictures"}</Card.Meta></h3>
             <List horizontal>
             {pictureUrls}
             </List>
             </List.Item>
-            
             </List>
             </Card.Content>
           </Card>
-      
       </Container>
     )
-
 }
 export default connect(({user})=>({user}))(Profile);
