@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {getResolvedObject} from '../util/resolved';
 import { Segment, Card, Image, Container, List} from 'semantic-ui-react'
 import ReactHtmlParser from 'react-html-parser';
@@ -7,7 +6,7 @@ import _ from 'lodash';
 
 
 //Profile UI
-const Profile = ({user})=>{
+export default ({user})=>{
   const Hml = ReactHtmlParser(getResolvedObject(_.omit(user,['id','siteStandardProfileRequest','formattedName','pictureUrl','publicProfileUrl','pictureUrls'])));
   const pictureUrls = _.isArray(user.pictureUrls) && user.pictureUrls.map((p)=>
   <List.Item><Image href={p} src={p} size='small'/></List.Item>)
@@ -48,4 +47,3 @@ const Profile = ({user})=>{
       </Container>
     )
 }
-export default connect(({user})=>({user}))(Profile);

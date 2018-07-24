@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './containers/Login';
 import {connect} from 'react-redux';
-import { BrowserRouter,Switch, Route} from 'react-router-dom';
 import Profile from './containers/Profile';
 import * as actions from './store/actions/auth';
+import {Container} from 'semantic-ui-react';
 
 //This App component act as a main controler of application
 class App extends Component {
@@ -12,14 +12,15 @@ class App extends Component {
     this.props.fetchUser();
   }
   render() {
-    const route = this.props.user.id? <Route path="" component={Profile}/>:
-    <Route path="/" component={()=><Login loading={this.props.loading}/>}/>;
+    const route = this.props.user.id?
+    <Profile user={this.props.user}/>:
+    <Login loading={this.props.loading}/>
+    
     return (
-      <BrowserRouter>
-        <Switch>
+      <Container>
           {route}
-        </Switch>
-      </BrowserRouter>
+      </Container>
+    
     );
   }
 }
