@@ -18,9 +18,8 @@ app.get('/auth/linkedin/callback', function(req, res, next) {
       if (err) { return res.redirect('/'); }
       if (!user) { return res.redirect('/'); }
       req.logIn(user, function(err) {
-        if (err) { return next(err); }
-        return res.redirect('/users/' + user.username);
-      });
+        return res.redirect('/');
+     });
     })(req, res, next);
   });
     app.get('/user/profile',(req,res)=>{
