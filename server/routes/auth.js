@@ -18,12 +18,5 @@ module.exports = (app)=>{
        
         req.logOut(); res.redirect('/')
     });
-    // app.get('/user/me',(req,res)=>{
-    //     console.log(req.user);
-    //     res.send(req.user);
-    // })
-    // app.get('/user/logout',(req,res)=>{
-    //     req.logout();
-    //     res.redirect('/');
-    // })
+   
 }

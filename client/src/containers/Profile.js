@@ -6,9 +6,11 @@ import ReactHtmlParser from 'react-html-parser';
 
 import _ from 'lodash';
 const Profile = ({user})=>{
-  const Hml = ReactHtmlParser(getResolvedObject(_.omit(user,'formattedName','pictureUrl')));
-//  render() {
-
+  const Hml = ReactHtmlParser(getResolvedObject(_.omit(user,['siteStandardProfileRequest','formattedName','pictureUrl','publicProfileUrl','pictureUrls'])));
+  const pictureUrls = user.pictureUrls.map((p)=>
+  <List.Item><Image href={p} src={p} size='small'/></List.Item>)
+  
+  //  render() {
     return (
       <Container>
           <Card >
@@ -20,6 +22,7 @@ const Profile = ({user})=>{
            <List.Item>
               <Image src={user.pictureUrl} size='min' circular />
             </List.Item>
+           
             <List.Item>
              <h1>Omkar Jadhav</h1>
             </List.Item>
@@ -32,6 +35,18 @@ const Profile = ({user})=>{
             <Card.Content>
             <List>
             {Hml}
+            <List.Item>
+              <h3>siteStandardProfileRequest :</h3>
+              <a href={user.siteStandardProfileRequest}>{user.siteStandardProfileRequest}</a>
+            </List.Item>
+            <List.Item>
+            <h3>Pictures <Card.Meta>Click on image</Card.Meta></h3>
+            
+            <List horizontal>
+            {pictureUrls}
+            </List>
+            </List.Item>
+            
             </List>
             </Card.Content>
           </Card>
