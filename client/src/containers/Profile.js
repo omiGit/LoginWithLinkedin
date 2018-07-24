@@ -6,12 +6,11 @@ import ReactHtmlParser from 'react-html-parser';
 import _ from 'lodash';
 
 const Profile = ({user})=>{
-  const Hml = ReactHtmlParser(getResolvedObject(_.omit(user,['siteStandardProfileRequest','formattedName','pictureUrl','publicProfileUrl','pictureUrls'])));
-  console.log(_.isArray(user.pictureUrls));
+  const Hml = ReactHtmlParser(getResolvedObject(_.omit(user,['id','siteStandardProfileRequest','formattedName','pictureUrl','publicProfileUrl','pictureUrls'])));
   const pictureUrls = _.isArray(user.pictureUrls) && user.pictureUrls.map((p)=>
   <List.Item><Image href={p} src={p} size='small'/></List.Item>)
   console.log(pictureUrls);
-  //  render() {
+  
     return (
       <Container>
           <Card >
@@ -23,7 +22,6 @@ const Profile = ({user})=>{
            <List.Item>
               <Image src={user.pictureUrl} size='min' circular />
             </List.Item>
-           
             <List.Item>
              <h1>{user.formattedName}</h1>
             </List.Item>
@@ -54,6 +52,6 @@ const Profile = ({user})=>{
       
       </Container>
     )
-  //}
+
 }
 export default connect(({user})=>({user}))(Profile);

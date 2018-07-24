@@ -5,9 +5,7 @@ export const fetchUser = ()=>async dispatch=>{
     let  response;
     try{
     response = await axios.get('/user/profile');
-    console.log(response);
     dispatch({type:actionTypes.SET_USER,payload:response.data});
-    console.log(response.data);
     }catch(e){
       dispatch({type:actionTypes.SET_ERROR,payload:response.data.error});
      

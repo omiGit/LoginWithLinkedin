@@ -8,9 +8,7 @@ import store from './store';
 
 const LinkedinLogin = ()=>(
  <Provider store={store}>
-  
         <App/>
-  
  </Provider>
 )
 

@@ -2,6 +2,7 @@ const passport = require('passport');
 const LinkedInStrategy =  require('passport-linkedin-oauth2').Strategy;
 const {auth:{linkdin}} = require('../../config/keys');
 const _ = require('lodash');
+
 passport.serializeUser((user,done)=>{
     done(null,user)
   });
@@ -16,7 +17,6 @@ passport.use(new LinkedInStrategy({
     scope: ['r_emailaddress', 'r_basicprofile'],
     proxy: true
   }, function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
     let userProfile = _.omit(profile._json,['firstName','lastName','apiStandardProfileRequest']);
     userProfile = {...userProfile,
     location:{ ...userProfile.location,country:userProfile.location.country.code,},

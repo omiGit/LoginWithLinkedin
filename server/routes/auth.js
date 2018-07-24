@@ -1,23 +1,13 @@
 const passport = require('passport');
 module.exports = (app)=>{
     
-    app.get('/auth/linkedin',
-    passport.authenticate('linkedin', { state: 'SDLFJSKLDFJKLSDF'  }));
+    app.get('/auth/linkedin',passport.authenticate('linkedin', { state: 'SDLFJSKLDFJKLSDF'  }));
 
-//     app.get('/auth/linkedin/callback', passport.authenticate('linkedin',{
-//         successRedirect: '/',
-//         failureRedirect: '/'
-//     })
-//    // (req,res)=>{
-//      //   console.log('done asdfsdf');
-//     //res.redirect('/');
-//     //}
-// );
-app.get('/auth/linkedin/callback', function(req, res, next) {
+    app.get('/auth/linkedin/callback', function(req, res, next) {
     passport.authenticate('linkedin', function(err, user, info) {
       if (err) { return res.redirect('/'); }
       if (!user) { return res.redirect('/'); }
-      req.logIn(user, function(err) {
+      req.logIn(user, function(err){
         return res.redirect('/');
      });
     })(req, res, next);
