@@ -27,4 +27,4 @@ if(process.env.NODE_ENV === 'production'){
     });
 }
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000);
