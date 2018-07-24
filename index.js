@@ -4,10 +4,9 @@ const passport = require('./server/service/passport');
 const {cookie} = require('./config/keys');
 const bodyParser = require('body-parser');
 const cookieSession =  require('cookie-session');
-const {auth:{linkdin}} = require('./config/keys');
 const path = require('path');
 const _ = require('lodash');
-
+require('dotenv/config');
 
 
 app.use(bodyParser.json());

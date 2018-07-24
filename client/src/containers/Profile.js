@@ -24,7 +24,7 @@ const Profile = ({user})=>{
             </List.Item>
            
             <List.Item>
-             <h1>Omkar Jadhav</h1>
+             <h1>{user.formattedName}</h1>
             </List.Item>
             <List.Item>
              <a href="/user/logout">Logout</a>
