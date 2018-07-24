@@ -3,13 +3,14 @@ import {connect} from 'react-redux';
 import {getResolvedObject} from '../util/resolved';
 import { Segment, Card, Icon, Image, Button, Divider, Container, List, Grid } from 'semantic-ui-react'
 import ReactHtmlParser from 'react-html-parser';
-
 import _ from 'lodash';
+
 const Profile = ({user})=>{
   const Hml = ReactHtmlParser(getResolvedObject(_.omit(user,['siteStandardProfileRequest','formattedName','pictureUrl','publicProfileUrl','pictureUrls'])));
-  const pictureUrls = user.pictureUrls.map((p)=>
+  console.log(_.isArray(user.pictureUrls));
+  const pictureUrls = _.isArray(user.pictureUrls) && user.pictureUrls.map((p)=>
   <List.Item><Image href={p} src={p} size='small'/></List.Item>)
-  
+  console.log(pictureUrls);
   //  render() {
     return (
       <Container>
@@ -40,7 +41,7 @@ const Profile = ({user})=>{
               <a href={user.siteStandardProfileRequest}>{user.siteStandardProfileRequest}</a>
             </List.Item>
             <List.Item>
-            <h3>Pictures <Card.Meta>Click on image</Card.Meta></h3>
+            <h3>Pictures <Card.Meta>{_.isBoolean(pictureUrls) ?'Click on image':"Your don't have any pictures"}</Card.Meta></h3>
             
             <List horizontal>
             {pictureUrls}

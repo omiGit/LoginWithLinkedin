@@ -16,10 +16,11 @@ passport.use(new LinkedInStrategy({
     scope: ['r_emailaddress', 'r_basicprofile'],
     proxy: true
   }, function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
     let userProfile = _.omit(profile._json,['firstName','lastName','apiStandardProfileRequest']);
     userProfile = {...userProfile,
     location:{ ...userProfile.location,country:userProfile.location.country.code,},
-    pictureUrls:[...userProfile.pictureUrls.values],
+    pictureUrls:_.has(userProfile,'pictureUrls')?[...userProfile.pictureUrls.values]:[],
     siteStandardProfileRequest: userProfile.siteStandardProfileRequest.url
     } 
     done(null, userProfile);
