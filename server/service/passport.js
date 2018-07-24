@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LinkedInStrategy =  require('passport-linkedin-oauth2').Strategy;
-
+const {auth:{linkdin}} = require('../../config/keys');
 const _ = require('lodash');
 passport.serializeUser((user,done)=>{
     done(null,user)
@@ -10,9 +10,9 @@ passport.serializeUser((user,done)=>{
   });
 
 passport.use(new LinkedInStrategy({
-    clientID: "81oqzohars51lw",
-    clientSecret:"78VvK6NIPrWAM3KO",
-    callbackURL: "/auth/linkedin/callback",
+    clientID: linkdin.clientID,
+    clientSecret:linkdin.clientSecret,
+    callbackURL:linkdin.callbackURL,
     scope: ['r_emailaddress', 'r_basicprofile'],
     proxy: true
   }, function(accessToken, refreshToken, profile, done) {
@@ -22,7 +22,6 @@ passport.use(new LinkedInStrategy({
     pictureUrls:[...userProfile.pictureUrls.values],
     siteStandardProfileRequest: userProfile.siteStandardProfileRequest.url
     } 
-    console.log(userProfile)
     done(null, userProfile);
   }));
 
