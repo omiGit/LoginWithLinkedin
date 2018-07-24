@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react';
 import {connect} from 'react-redux';
 import {getResolvedObject} from '../util/resolved';
-import { Segment, Card, Icon, Image, Button, Divider, Container, List, Grid } from 'semantic-ui-react'
+import { Segment, Card, Image, Container, List} from 'semantic-ui-react'
 import ReactHtmlParser from 'react-html-parser';
 import _ from 'lodash';
 
